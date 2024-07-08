@@ -1,0 +1,27 @@
+{% for room in rooms %}
+<div class="col-md-4 mb-2">
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">
+        <a href="{% url 'room' room.id %}" class="text-decoration-none">{{ room.name }}</a>
+      </h5>
+      <h6 class="card-subtitle mb-2 text-muted">
+        <a href="{% url 'user-profile' room.host.id %}">@{{ room.host.username }}</a>
+      </h6>
+      <p class="card-text">
+        <small class="text-muted">{{ room.topic.name }}</small>
+      </p>
+      {% if request.user == room.host %}
+      <span>
+        <a href="{% url 'update-room' room.id %}">
+          <div class="btn btn-sm btn-warning mb-4">Update Room</div>
+        </a>
+        <a href="{% url 'delete-room' room.id %}">
+          <div class="btn btn-sm btn-danger mb-4">Delete Room</div>
+        </a>
+      </span>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endfor %}

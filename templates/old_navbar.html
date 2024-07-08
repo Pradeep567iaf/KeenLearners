@@ -1,0 +1,20 @@
+<a href="/"><h1>Logo</h1></a>
+<form method="GET" action="{% url 'home' %}">
+  <input type="text" name="topic" placeholder="Search Topics ..." />
+</form>
+{% if request.user.is_authenticated %}
+<span>{{request.user.username}}</span>
+<a href="{% url 'logout' %}">Logout</a>
+{% else %}
+<div class="m-2">
+  <a href="{% url 'login' %}"
+    ><span class="btn btn-sm btn-primary">Login</span></a
+  >
+  <a href="{% url 'register' %}"
+    ><span class="btn btn-sm btn-danger">Signup</span></a
+  >
+</div>
+
+{% endif %}
+
+<hr />

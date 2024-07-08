@@ -1,0 +1,51 @@
+{% extends 'main.html' %} {% block content %}
+<style>
+  .home-container {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+  }
+
+  a {
+    text-decoration: none;
+  }
+</style>
+
+<div class="home-container">
+  <!-- Side bar conent -->
+  <div>
+    {% include 'base/topics_component.html' %}
+  </div>
+  <!--  End of the Side bar conent -->
+
+  <!-- Show Rooms content -->
+  <div>
+    <div class="container mt-5">
+      <h1 class="text-center mb-4">Home Page</h1>
+
+      <a href="{% url 'create-room' %}">
+        <div class="btn btn-primary mb-4">Create Room</div>
+      </a>
+      <div>
+        {% if room_count > 0 and room_count > 2 %}
+        <span>{{room_count}} rooms are Available</span>
+        {% elif room_count > 0 and room_count < 2 %} <span>Only {{room_count}} room is available</span>
+          {% else %}
+          <span>No Room is available</span>
+          {% endif %}
+      </div>
+
+      <div class="row">
+        {% include 'base/feed_component.html' %}
+      </div>
+    </div>
+  </div>
+  <!-- end of Show Rooms content -->
+
+  <div>
+    {% include 'base/activity_component.html' %}
+  </div>
+
+
+</div>
+
+{% endblock content %}
